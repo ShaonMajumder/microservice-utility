@@ -1,0 +1,32 @@
+{
+    "name": "shaonmajumder/microservice-utility",
+    "description": "A Laravel package that provides essential microservice utilities, including health check endpoints, application restart mechanisms, and fallback handling for missing routes.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "ShaonMajumder\\MicroserviceUtility\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Shaon Majumder"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ShaonMajumder\\MicroserviceUtility\\MicroserviceUtilityServiceProvider"
+            ],
+            "aliases": {
+            }
+        }
+    },
+    "scripts": {
+        "pre-uninstall-cmd": [
+            "ShaonMajumder\\MicroserviceUtility\\UninstallMicroserviceUtility::cleanUp"
+        ]
+    }
+}
