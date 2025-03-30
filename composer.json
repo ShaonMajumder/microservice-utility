@@ -10,7 +10,8 @@
     },
     "authors": [
         {
-            "name": "Shaon Majumder"
+            "name": "Shaon Majumder",
+            "email": "smazoomder@gmail.com"
         }
     ],
     "minimum-stability": "dev",
