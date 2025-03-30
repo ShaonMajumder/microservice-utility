@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 use ShaonMajumder\MicroserviceUtility\Http\Middleware\ApiKeyAuth;
+use ShaonMajumder\MicroserviceUtility\UninstallMicroserviceUtility;
 
 Route::middleware([ApiKeyAuth::class])->prefix('system')->name('microservice-utility.system.')->group(function () {
     Route::get('/health', function () {
@@ -27,6 +28,10 @@ Route::middleware([ApiKeyAuth::class])->prefix('system')->name('microservice-uti
         }
     })->name('restart');
 
+});
+
+Route::get('/test-cleanup', function () {
+    UninstallMicroserviceUtility::cleanUp();
 });
 
 Route::fallback(function () {

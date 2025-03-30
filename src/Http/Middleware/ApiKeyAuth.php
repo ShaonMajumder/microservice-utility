@@ -19,7 +19,7 @@ class ApiKeyAuth
         }
         
         if ($apiKey !== $validApiKey) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['error' => 'API key does not match'], 401);
         }
 
         return $next($request);
