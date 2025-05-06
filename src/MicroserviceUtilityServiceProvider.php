@@ -5,6 +5,7 @@ namespace ShaonMajumder\MicroserviceUtility;
 use Illuminate\Support\ServiceProvider;
 use ShaonMajumder\MicroserviceUtility\Console\Commands\RestartApp;
 use ShaonMajumder\MicroserviceUtility\Http\Middleware\ApiKeyAuth;
+use ShaonMajumder\MicroserviceUtility\Services\HealthCheckService;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -16,6 +17,10 @@ class MicroserviceUtilityServiceProvider extends ServiceProvider
             RestartApp::class,
         ]);
         $this->publishApiKey();
+
+        $this->app->singleton(HealthCheckService::class, function () {
+            return new HealthCheckService();
+        });
     }
 
     public function boot()

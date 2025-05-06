@@ -5,10 +5,15 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 use ShaonMajumder\MicroserviceUtility\Http\Middleware\ApiKeyAuth;
 use ShaonMajumder\MicroserviceUtility\UninstallMicroserviceUtility;
+use ShaonMajumder\MicroserviceUtility\Services\HealthCheckService;
 
 Route::middleware([ApiKeyAuth::class])->prefix('system')->name('microservice-utility.system.')->group(function () {
-    Route::get('/health', function () {
-        return response()->json(['status' => 'ok', 'timestamp' => now()]);
+    Route::get('/health', function (HealthCheckService $health) {
+        return response()->json([
+            'status' => 'ok',
+            'timestamp' => now(),
+            'services' => $health->run()
+        ]);
     })->name('health');
     Route::get('/restart', function () {
         try {
